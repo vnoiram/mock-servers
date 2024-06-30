@@ -1,0 +1,5 @@
+FROM ghost:5-alpine
+
+COPY add-admin-user.js /var/lib/ghost/current/core/cli/
+
+RUN /bin/bash -c 'node /var/lib/ghost/current/core/cli/add-admin-user.js add-admin-user --email admin@example.com --name TestUser --password atleast10chars'
