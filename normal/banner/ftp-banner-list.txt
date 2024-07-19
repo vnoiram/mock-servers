@@ -1,0 +1,50 @@
+220 127.0.0.1 FTP server (tnftpd 20080929) ready.
+220 127.0.0.1 FTP server ready
+220 Bienvenido al FTP del Dpto. IT de Compusof, S.A.
+220 FTP Server
+220 FTP Server 1.0
+220 FTP Server 1.2.4 (FTPD)
+220 FTP Server ready.
+220 FTP server
+220 FTP service ready.
+220 FTP service ready. Warning: FTP is not secure. SFTP is recommended.
+220 FileZilla Server 0.9.56 beta Welcome TO CHPROS FTP.
+220 Ftp firmware update utility
+220 Gene6 FTP Server v3.10.0 (Build 2) ready...
+220 LTEVPN71 FTP server (MikroTik 6.49.7) ready
+220 MSF Central Ave FTP server (MikroTik 6.44.6) ready
+220 Microsoft FTP Service
+220 MikroTik FTP server (MikroTik 6.44) ready
+220 MikroTik FTP server (MikroTik 6.47.1) ready
+220 MikroTik FTP server (MikroTik 6.47.9) ready
+220 MikroTik FTP server (MikroTik 6.49.11) ready
+220 MikroTik FTP server (MikroTik 6.49.13) ready
+220 Multicraft 2.3.5 FTP server
+220 NC FTP server
+220 ProFTPD Server (FTP Server) [127.0.0.1]
+220 ProFTPD Server (SAKURA Internet FTP Server) [127.0.0.1]
+220 ProFTPD Server (pair Networks, Inc FTP server) [127.0.0.1]
+220 RTK_GW FTP server (GNU inetutils 1.4.1) ready.
+220 SmartGateway FTP server (GNU inetutils 1.4.1) ready.
+220 ThalesNAS FTP server ready.
+220 UserDevice (00:00:00:00:00:00) FTP server ready.
+220 VxWorks FTP server (VxWorks VxWorks5.5.1) ready.
+220 Website FTP Server Ready
+220 Welcome FTP Service.
+220 Welcome to ASUS RT-AX86U FTP service.
+220 Welcome to TVU FTP service.
+220 Welcome to blah FTP service.
+220 Welcome to quarkmail FTP server version 1.2.1 
+220 Welcome to virtual FTP service.
+220 Welcome to www.net.cn FTP service.
+220 Welcome.
+220 Wing FTP Server ready...
+220 Xlight FTP Server 3.8 ready...
+220 YAO_R FTP server ready.
+220 Zenith_MDF_3424 FTP server ready.
+220 beeserver16 Microsoft FTP Service (Version 5.0).
+220-
+220---------- Welcome to Pure-FTPd [privsep] [TLS] ----------
+220-FileZilla Server 1.8.0
+220-FileZilla Server version 0.9.41 beta
+220-Microsoft FTP Service

@@ -1,0 +1,30 @@
+220 mailserver.internal DBMail/Shr SMTP ver 4.26.1/2K3*0 SQL Server 2000 Enterprise Edition [59]/Un=0.
+220 mailserver.internal ESMTP Postfix
+220 mailserver.internal HETEML-Fsecure
+220 mailserver.internal Kerio Connect 10.0.4 ESMTP ready
+220 mailserver.internal SMTP
+220 mailserver.internal SMTP Working
+220 "Resulticks SMTP Ready"
+220 000000000000 Python SMTP proxy version 0.3
+220 mailserver.internal
+220 mailserver.internal ArGoSoft Mail Server SMTP Module v.2.0.5.0
+220 mailserver.internal ESMTP
+220 mailserver.internal ESMTP CommuniGate Pro 5.2.20
+220 mailserver.internal ESMTP Postfix
+220 mailserver.internal ESMTP Postfix (Debian/GNU)
+220 mailserver.internal ESMTP Postfix (Ubuntu)
+220 mailserver.internal ESMTP ready.
+220 mailserver.internal ESMTP smtp-in
+220 mailserver.internal InterWorx-CP SMTP Server ESMTP
+220 mailserver.internal Microsoft ESMTP MAIL Service ready
+220 mailserver.internal Odouche SMTP service
+220 mailserver.internal SMTP Sendmail 8.14.3
+220 mailserver.internal SMTP server
+220 SMTP ESMTP Relay
+220 SMTP ESMTP ready
+220 SMTP Ready
+220 WEB Microsoft ESMTP MAIL Service, Version: 10.0.17763.1 ready
+220 Wellcome to SMTP
+220 Wellcome to SMTP Server
+220 inbucket Inbucket SMTP ready
+220 undefined ESMTP Sendinblue SMTP 2.0

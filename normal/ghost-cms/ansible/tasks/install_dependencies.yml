@@ -1,0 +1,67 @@
+---
+# use this module on using apt
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+
+- name: apt update
+  ansible.builtin.apt:
+    update_cache: yes
+  become: yes
+
+- name: apt upgrade
+  ansible.builtin.apt:
+    upgrade: yes
+  become: yes
+
+- name: install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: 1.22.1-9
+  become: yes
+
+- name: install mysql
+  ansible.builtin.apt:
+    name: default-mysql-server
+    state: 1.1.0
+  become: yes
+
+- name: install ca-certificates
+  ansible.builtin.apt:
+    name: ca-certificates
+  become: yes
+
+- name: install curl
+  ansible.builtin.apt:
+    name: curl
+  become: yes
+
+- name: install gnupg
+  ansible.builtin.apt:
+    name: gnupg
+  become: yes
+
+- name: mk keyring dir
+  command: "mkdir -p /etc/apt/keyrings"
+  become: yes
+
+- name: download and add node keyring
+  command: "curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg"
+  become: yes
+
+- name: download and add node keyring
+  command: "echo 'deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_{{NODE_MAJOR}}.x nodistro main' >> /etc/apt/sources.list.d/nodesource.list"
+  become: yes
+
+- name: apt update
+  ansible.builtin.apt:
+    update_cache: yes
+  become: yes
+
+- name: install nodejs
+  ansible.builtin.apt:
+    name: nodejs
+    state: 18.20.4-1nodesource1
+  become: yes
+
+- name: install ghost-cli
+  command: "npm install ghost-cli@1.26.0 -g"
+  become: yes

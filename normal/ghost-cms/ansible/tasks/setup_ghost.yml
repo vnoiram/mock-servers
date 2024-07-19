@@ -1,0 +1,24 @@
+---
+
+- name: copy add admin script
+  copy:
+    src: ../../resources/add-admin-user.js
+    dest: "{{GHOST_HOME}}/current/core/cli/"
+    owner: "{{GHOST_UNIX_USER}}"
+    group: "{{GHOST_UNIX_USER}}"
+    mode: "754"
+  become: yes
+  become_user: "{{GHOST_UNIX_USER}}"
+  become_password: "{{GHOST_UNIX_PASSWORD}}"
+
+- name: make ghost log dir
+  command: "mkdir {{GHOST_HOME}}/content/logs"
+  become: yes
+  become_user: "{{GHOST_UNIX_USER}}"
+  become_password: "{{GHOST_UNIX_PASSWORD}}"
+
+- name: setup admin account
+  command: "node {{GHOST_HOME}}/current/core/cli/add-admin-user.js add-admin-user --email {{GHOST_ADMIN_EMAIL}} --name {{GHOST_ADMIN_USER}} --password {{GHOST_ADMIN_PASSWORD}}"
+  become: yes
+  become_user: "{{GHOST_UNIX_USER}}"
+  become_password: "{{GHOST_UNIX_PASSWORD}}"

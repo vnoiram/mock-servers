@@ -1,0 +1,17 @@
+---
+
+- hosts: default
+  user: vagrant
+  sudo: yes
+  tasks:
+    - name: install dependencies
+      include_tasks: install_dependencies
+
+    - name: install ghost cms
+      include_tasks: install_ghost
+  
+    - name: setup ghost cms
+      include_tasks: setup_ghost
+
+    - name: run ghost cms
+      command: ""
