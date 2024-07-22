@@ -1,4 +1,7 @@
 ---
+- name: set hostname
+  command: "hostname {{GHOST_HOSTNAME}}"
+  become: yes
 
 - name: disable ipv6 by write sysctl option 1
   command: "echo 'net.ipv6.conf.all.disable_ipv6 = 1' >> /etc/sysctl.conf"
@@ -41,11 +44,11 @@
     name: "{{GHOST_DB_USER}}"
     password: "{{GHOST_DB_PASSWORD}}"
     password_expire: never
-    priv: "{{GHOST_DB_NAME}}:ALL"
+    priv: "{{GHOST_DB_NAME}}.*:ALL"
   become: yes
 
 - name: install ghost to ghost home
-  command: "ghost install {{GHOST_VERSION}} --ip '::' --url={{GHOST_PROJECT_URL}} --port={{GHOST_PORT}} --db={{GHOST_DB_HOST}} --dbhost=localhost --dbport={{GHOST_DB_PORT}} --dbuser={{GHOST_DB_USER}} --dbpass={{GHOST_DB_PASSWORD}} --dbname={{GHOST_DB_NAME}} --no-setup-ssl --no-prompt --start"}
+  command: "ghost install {{GHOST_VERSION}} --ip '::' --url={{GHOST_URL}} --port={{GHOST_PORT}} --db={{GHOST_DB_HOST}} --dbhost=localhost --dbport={{GHOST_DB_PORT}} --dbuser={{GHOST_DB_USER}} --dbpass={{GHOST_DB_PASSWORD}} --dbname={{GHOST_DB_NAME}} --dir={{GHOST_HOME}} --no-setup-ssl --no-prompt --start"}
   # command: "ghost install --ip={{ansible_default_ipv4.address}} --url={{GHOST_PROJECT_URL}} --db={{GHOST_DB_HOST}} --dbhost=localhost --dbport={{GHOST_DB_PORT}} --dbuser={{GHOST_DB_USER}} --dbpass={{GHOST_DB_PASSWORD}} --dbname={{GHOST_DB_NAME}} --no-prompt --start"}
   # command: "ghost install --url={{GHOST_PROJECT_URL}} --db={{GHOST_DB}} --dbhost={{GHOST_DB_HOST}} --dbuser={{GHOST_DB_USER}} --dbpass={{GHOST_DB_PASSWORD}} --dbname={{GHOST_DB_NAME}} --mail={{GHOST_SMTP}} --mailservice={{GHOST_SMTP_SERVICE}} --mailuser={{GHOST_SMTP_USER}} --mailpass={{GHOST_SMTP_PASSWORD}} --mailport={{GHOST_SMTP_PORT}} --sslemail={{GHOST_LETSENCRYPT_USER}} --no-setup-ssl --no-prompt --start"
   become: yes

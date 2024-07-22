@@ -1,17 +1,18 @@
 // Load the Ghost environment require('../../../ghost');
 
-const UserModel = require('/var/lib/ghost/current/core/server/models/user');
+require('../../ghost');
+const UserModel = require('../server/models/user');
 const { Command } = require('commander');
 const program = new Command();
 
 program.command('add-admin-user').description('Addanewadminuser').option('--email<email>','Email').option('--name<name>','Name').option('--password<password>','Password').action(
   async(options) => {
-    const{
+    const {
       email,
       name,
       password
     } = options;
-    constadminRoleId=1;
+    const adminRoleId=1;
 
     try {
       await UserModel.User.add(
@@ -29,4 +30,4 @@ program.command('add-admin-user').description('Addanewadminuser').option('--emai
     }
   }
 );
-// Parse CLI arguments and run the command program.parse(process.argv);
+// Parse CLI arguments and run the command program.parse(process.argv)

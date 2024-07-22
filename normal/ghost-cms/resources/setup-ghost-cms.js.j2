@@ -1,0 +1,22 @@
+const fs = require('node:fs');
+
+try {
+  const admin_key = fs.readFileSync('{{GHOST_ADMIN_TOKEN_PATH}}', 'utf8');
+  console.log(data);
+} catch (err) {
+  console.error(err);
+  process.exit(1);
+}
+
+const api = new GhostAdminAPI({
+  url: '{{GHOST_URL}}',
+  key: admin_key,
+  version: "v5.0",
+});
+
+api.posts.add({
+    title: 'My first draft API post',
+    lexical: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Hello, beautiful world! 👋","type":"extended-text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+});
+
+api.theme.activate({name:"headline"})

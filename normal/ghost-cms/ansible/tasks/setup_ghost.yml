@@ -1,24 +1,31 @@
 ---
 
-- name: copy add admin script
-  copy:
-    src: ../../resources/add-admin-user.js
-    dest: "{{GHOST_HOME}}/current/core/cli/"
-    owner: "{{GHOST_UNIX_USER}}"
-    group: "{{GHOST_UNIX_USER}}"
-    mode: "754"
-  become: yes
-  become_user: "{{GHOST_UNIX_USER}}"
-  become_password: "{{GHOST_UNIX_PASSWORD}}"
-
 - name: make ghost log dir
   command: "mkdir {{GHOST_HOME}}/content/logs"
   become: yes
   become_user: "{{GHOST_UNIX_USER}}"
   become_password: "{{GHOST_UNIX_PASSWORD}}"
+  ignore_errors: yes
 
 - name: setup admin account
-  command: "node {{GHOST_HOME}}/current/core/cli/add-admin-user.js add-admin-user --email {{GHOST_ADMIN_EMAIL}} --name {{GHOST_ADMIN_USER}} --password {{GHOST_ADMIN_PASSWORD}}"
-  become: yes
-  become_user: "{{GHOST_UNIX_USER}}"
-  become_password: "{{GHOST_UNIX_PASSWORD}}"
+  command: "curl --path-as-is -i -s -k -X 'POST' -H 'Host: {{GHOST_IP}}' -H 'Content-Type: application/json; charset=UTF-8' -H 'X-Ghost-Version: 5.88' -H 'App-Pragma: no-cache' -H 'X-Requested-With: XMLHttpRequest' -H 'Content-Length: 120' -H 'Origin: {{GHOST_URL}}' -H 'DNT: 1' -H 'Connection: close' -H 'Sec-GPC: 1' --data-binary '{\"setup\":[{\"name\":\"Test User\",\"email\":\"admin@example.com\",\"password\":\"atleast10chars\",\"blogTitle\":\"The Daily Awesome\"}]}' '{{GHOST_URL}}/ghost/api/admin/authentication/setup/'"
+
+- name: get admin and content token's
+  command: "curl --path-as-is -s -k -X 'POST' -H 'Host: {{GHOST_IP}}' -H 'x-ghost-version: 5.88' -H 'content-type: application/json' -H 'Origin: {{GHOST_URL}}' -b ghost-cookie.txt -d '{\"integrations\": [{\"name\":\"custom-setup\"}]}' '{{GHOST_URL}}/ghost/api/admin/integrations/?include=api_keys%2Cwebhooks' -o {{GHOST_TOKEN_PATH}}"
+
+- name: dump content token
+  command: "cat {{GHOST_TOKEN_PATH}} | jq -r '.integrations[0].api_keys[] | select (.type == \"content\") | .secret' >> {{GHOST_CONTENT_TOKEN_PATH}}"
+
+- name: dump admin token
+  command: "cat {{GHOST_TOKEN_PATH}} | jq -r '.integrations[0].api_keys[] | select (.type == \"content\") | .secret' >> {{GHOST_ADMIN_TOKEN_PATH}}"
+
+- name: get admin cookie
+  command: "curl -c {{GHOST_ADMIN_COOKIE_PATH}} -d username=admin@example.com -d password=atleast10chars -H 'Origin: {{GHOST_URL}}' -H 'Accept-Version: v3.0' {{GHOST_URL}}/ghost/api/admin/session/"
+  chdir: "{{GHOST_HOME}}"
+
+- name: install theme
+  command: "curl -X POST -b {{GHOST_ADMIN_COOKIE_PATH}} {{GHOST_URL}}/ghost/api/admin/themes/install/?source=github&ref=TryGhost%2FHeadline"
+  ignore_errors: yes
+
+- name: make members
+  command: "curl -b {{GHOST_ADMIN_COOKIE_PATH}}"

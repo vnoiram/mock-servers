@@ -39,6 +39,12 @@
     name: gnupg
   become: yes
 
+- name: install jq
+  ansible.builtin.apt:
+    name: jq
+    state: 1.6-2.1
+  become: yes
+
 - name: mk keyring dir
   command: "mkdir -p /etc/apt/keyrings"
   become: yes
@@ -64,4 +70,8 @@
 
 - name: install ghost-cli
   command: "npm install ghost-cli@1.26.0 -g"
+  become: yes
+
+- name: install ghost-admin-api
+  command: "npm install @tryghost/admin-api@1.13.12"
   become: yes

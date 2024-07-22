@@ -2,12 +2,14 @@
 
 NODE_MAJOR: 18
 GHOST_HOME: "/var/lib/ghost-home"
+GHOST_HOSTNAME: "ghost-cms.internal"
 GHOST_UNIX_USER: "ghost"
 GHOST_UNIX_PASSWORD: "ghost"
-GHOST_ADMIN_USER: "ghost"
+GHOST_ADMIN_USER: "ghost-admin"
 GHOST_ADMIN_PASSWORD: "atleast10chars"
-GHOST_ADMIN_EMAIL: "ghost@example.com"
-GHOST_PROJECT_URL: "http://ghost-cms.internal"
+GHOST_ADMIN_EMAIL: "ghost-admin@ghost-cms.internal"
+GHOST_IP: "{{ansible_host}}"
+GHOST_URL: "http://{{GHOST_IP}}"
 GHOST_PORT: "2368"
 GHOST_DB_HOST: "mysql"
 GHOST_DB_PORT: "mysql"
@@ -17,6 +19,10 @@ GHOST_DB_USER: "ghost"
 GHOST_DB_PASSWORD: "ghost"
 GHOST_DB_NAME: "ghostdb"
 GHOST_VERSION: "5.87.3"
+GHOST_ADMIN_COOKIE_PATH: "{{GHOST_HOME}}/ghost-cookie.txt"
+GHOST_TOKEN_PATH: "{{GHOST_HOME}}/ghost-tokens.txt"
+GHOST_ADMIN_TOKEN_PATH: "{{GHOST_HOME}}/ghost-admin-token.txt"
+GHOST_CONTENT_TOKEN_PATH: "{{GHOST_HOME}}/ghost-content-token.txt"
 # GHOST_SMTP: 
 # GHOST_SMTP_SERVICE: 
 # GHOST_SMTP_USER: 
